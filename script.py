@@ -25,3 +25,12 @@ print(json.dumps(build_info, indent=2))
 print()
 print("ENV VARS")
 print(json.dumps(dict(os.environ), indent=2))
+
+print()
+print("READING TEST FILE")
+try:
+    with open("tests.xml", "r") as f:
+        f.read()
+    print("SUCCESSFULLY READ tests.xml")
+except Exception as e:
+    print(e)
