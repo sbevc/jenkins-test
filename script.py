@@ -1,3 +1,4 @@
+import json
 import os
 
 from jenkins import Jenkins
@@ -13,9 +14,9 @@ build_info = server.get_build_info(job_name, build_number)
 
 print("BUILD CONSOLE OUTPUT")
 print()
-print(build_console_output)
+print(json.dumps(build_console_output, indent=4))
 
 
 print("BUILD INFO")
 print()
-print(build_info)
+print(json.dumps(build_info, indent=4))
