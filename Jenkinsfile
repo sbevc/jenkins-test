@@ -3,14 +3,13 @@ pipeline {
     stages {
         stage("build") {
             steps {
-                sh 'echo hello'
-                sh 'python3 script.py'
+                sh 'echo building...'
             }
         }
     }
     post {
         always {
-            sh 'echo POST'
+            sh 'echo post-always'
             sh 'python3 script.py'
         }
     }
