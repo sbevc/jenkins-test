@@ -3,7 +3,7 @@ import os
 from jenkins import Jenkins
 
 jenkins_url = os.environ["JENKINS_URL"]
-build_number = os.environ["BUILD_NUMBER"]
+build_number = int(os.environ["BUILD_NUMBER"])
 job_name = os.environ["JOB_NAME"]
 
 
