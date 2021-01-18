@@ -1,5 +1,11 @@
 pipeline {
     agent any
+
+    environment {
+        PY_ENV = "/Users/sbevc/.local/share/virtualenvs/jenkins-7fb5-MYk/bin/python3"
+
+    }
+
     stages {
         stage("build") {
             steps {
@@ -7,10 +13,11 @@ pipeline {
             }
         }
     }
+
     post {
         always {
             sh 'echo post-always'
-            sh 'python3 script.py'
+            sh '$PY_ENV script.py'
         }
     }
 }
