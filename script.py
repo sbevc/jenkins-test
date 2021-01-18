@@ -14,9 +14,9 @@ build_info = server.get_build_info(job_name, build_number)
 
 print("BUILD CONSOLE OUTPUT")
 print()
-print(json.dumps(build_console_output, indent=4))
+print(build_console_output)
 
 
 print("BUILD INFO")
 print()
-print(json.dumps(build_info, indent=4))
+print(json.dumps(build_info, indent=2))
