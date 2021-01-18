@@ -24,4 +24,4 @@ print(json.dumps(build_info, indent=2))
 
 print()
 print("ENV VARS")
-print(json.dumps(os.environ, indent=2))
+print(json.dumps(dict(os.environ), indent=2))
