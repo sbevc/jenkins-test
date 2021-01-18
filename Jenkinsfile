@@ -7,7 +7,9 @@ pipeline {
 
     stages {
         stage("test") {
-            sh '$PY_ENV -m pytest'
+            steps {
+                sh '$PY_ENV -m pytest'
+            }
         }
 
         stage("build") {
