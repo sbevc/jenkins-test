@@ -8,4 +8,10 @@ pipeline {
             }
         }
     }
+    post {
+        always {
+            sh 'echo POST'
+            sh 'python3 script.py'
+        }
+    }
 }
