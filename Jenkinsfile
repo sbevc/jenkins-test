@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage("test") {
             steps {
-                sh '$PY_ENV -m pytest'
+                sh '$PY_ENV -m pytest --junit-xml=tests.xml'
             }
         }
 
