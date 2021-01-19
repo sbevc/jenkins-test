@@ -31,7 +31,7 @@ print(json.dumps(dict(os.environ), indent=2))
 print()
 print("READING TEST FILE")
 try:
-    with open("tests.xml", "r") as f:
+    with open("output.xml", "r") as f:
         print(f.read())
 except FileExistsError as e:
     print(e)
