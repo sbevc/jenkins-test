@@ -10,4 +10,4 @@ WORKDIR $APP
 RUN pip install pipenv && pipenv install --deploy --system
 RUN pip freeze
 
-CMD ["python" "-m pytest"]
+CMD pytest --junit-xml=output.xml
