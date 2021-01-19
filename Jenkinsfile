@@ -18,10 +18,13 @@ pipeline {
 
     }
 
-    //post {
-        //always {
-            //sh 'echo post-always'
-            //sh '$PY_ENV script.py'
-        //}
-    //}
+    post {
+        always {
+            sh """
+            echo post-always stage
+            docker build -t send-script -f send.Dockerfile
+            docker run send-script
+            """
+        }
+    }
 }

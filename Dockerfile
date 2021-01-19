@@ -8,6 +8,5 @@ ADD . $APP
 WORKDIR $APP
 
 RUN pip install pipenv && pipenv install --deploy --system
-RUN pip freeze
 
 CMD pytest --junit-xml=output.xml
