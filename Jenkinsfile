@@ -35,6 +35,7 @@ pipeline {
                 -e BUILD_NUMBER=${env.BUILD_NUMBER} \
                 -e DOCKER_TESTS_VOLUME_PATH=${DOCKER_TESTS_VOLUME_PATH} \
                 send-script
+            docker volume rm ${DOCKER_TESTS_VOLUME}
             """
         }
     }
