@@ -37,13 +37,6 @@ pipeline {
                 send-script
             docker volume rm ${DOCKER_TESTS_VOLUME}
             """
-            sh """
-            set +e
-            asdfasfasdfdasfhjsahfasjdf
-            ls
-            set -e
-            adfkjasdlfkasj
-            """
         }
     }
 }
