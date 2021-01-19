@@ -28,7 +28,7 @@ pipeline {
             echo post-always stage
             docker build -t send-script -f send.Dockerfile .
             docker run \
-                --rm
+                --rm \
                 -v ${DOCKER_TESTS_VOLUME}:${DOCKER_TESTS_VOLUME_PATH}
                 -e JENKINS_URL=http://host.docker.internal:8080 \
                 -e JOB_NAME=${env.JOB_NAME} \
