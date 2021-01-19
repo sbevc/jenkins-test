@@ -7,7 +7,6 @@ ADD . $APP
 
 WORKDIR $APP
 
-RUN apt install pipenv
-RUN pipenv install --deploy --system
+RUN pip install pipenv && pipenv install --deploy --system
 
 CMD ["python", "main.py"]
