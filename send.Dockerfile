@@ -9,4 +9,4 @@ WORKDIR $APP
 
 RUN pip install python-jenkins
 
-CMD python main.py --jenkins-url=${JENKINS_URL} --job-name=${JOB_NAME} --build-number=${BUILD_NUMBER}
+CMD python main.py
