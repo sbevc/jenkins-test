@@ -32,7 +32,6 @@ print()
 print("READING TEST FILE")
 try:
     with open("tests.xml", "r") as f:
-        f.read()
-    print("SUCCESSFULLY READ tests.xml")
+        print(f.read())
 except FileExistsError as e:
     print(e)
