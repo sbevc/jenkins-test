@@ -1,18 +1,22 @@
 pipeline {
     agent any
 
-    stages {
-        stage("build") {
-            steps {
-                sh 'echo building test image...'
-                sh 'docker build -t jenkins-tests .'
-            }
-        }
+    environment {
+        DOCKER_TESTS_VOLUME = "TestsVolume"
+        DOCKER_TESTS_VOLUME_PATH = "/tests"
+    }
 
+    stages {
         stage("test") {
             steps {
-                sh 'echo running tests in docker'
-                sh 'docker run jenkins-tests'
+                sh """
+                docker build -t jenkins-tests .
+                docker run \
+                    --rm \
+                    -v ${DOCKER_TESTS_VOLUME}:${DOCKER_TESTS_VOLUME_PATH} \
+                    -e DOCKER_TESTS_VOLUME_PATH=${DOCKER_TESTS_VOLUME_PATH} \
+                    jenkins-tests
+                """
             }
         }
 
@@ -23,11 +27,13 @@ pipeline {
             sh """
             echo post-always stage
             docker build -t send-script -f send.Dockerfile .
-            echo $JENKINS_URL
             docker run \
+                --rm
+                -v ${DOCKER_TESTS_VOLUME}:${DOCKER_TESTS_VOLUME_PATH}
                 -e JENKINS_URL=http://host.docker.internal:8080 \
                 -e JOB_NAME=${env.JOB_NAME} \
                 -e BUILD_NUMBER=${env.BUILD_NUMBER} \
+                -e DOCKER_TESTS_VOLUME_PATH=${DOCKER_TESTS_VOLUME_PATH} \
                 send-script
             """
         }

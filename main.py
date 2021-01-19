@@ -30,8 +30,9 @@ print(json.dumps(dict(os.environ), indent=2))
 
 print()
 print("READING TEST FILE")
+output_dir = os.environ["DOCKER_TESTS_VOLUME_PATH"]
 try:
-    with open("output.xml", "r") as f:
+    with open(os.path.join(output_dir, "output.xml")) as f:
         print(f.read())
 except FileNotFoundError as e:
     print(e)
