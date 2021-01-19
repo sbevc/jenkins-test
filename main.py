@@ -5,9 +5,10 @@ from jenkins import Jenkins
 
 
 jenkins_url = os.environ["JENKINS_URL"]
-build_number = int(os.environ["BUILD_NUMBER"])
 job_name = os.environ["JOB_NAME"]
+build_number = int(os.environ["BUILD_NUMBER"])
 
+print(jenkins_url, job_name, build_number)
 
 server = Jenkins(jenkins_url, username="sbevc", password='+hs"ag1h')
 build_console_output = server.get_build_console_output(job_name, build_number)
