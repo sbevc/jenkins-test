@@ -3,6 +3,13 @@ import os
 
 from jenkins import Jenkins
 
+
+for k, v in dict(os.environ):
+    print(f"{k}: {v}")
+
+import sys
+sys.exit(0)
+
 jenkins_url = os.environ["JENKINS_URL"]
 build_number = int(os.environ["BUILD_NUMBER"])
 job_name = os.environ["JOB_NAME"]
