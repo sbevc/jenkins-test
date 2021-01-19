@@ -32,5 +32,5 @@ try:
     with open("tests.xml", "r") as f:
         f.read()
     print("SUCCESSFULLY READ tests.xml")
-except Exception as e:
+except FileExistsError as e:
     print(e)
