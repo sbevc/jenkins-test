@@ -29,7 +29,7 @@ pipeline {
             docker build -t send-script -f send.Dockerfile .
             docker run \
                 --rm \
-                -v ${DOCKER_TESTS_VOLUME}:${DOCKER_TESTS_VOLUME_PATH}
+                -v ${DOCKER_TESTS_VOLUME}:${DOCKER_TESTS_VOLUME_PATH} \
                 -e JENKINS_URL=http://host.docker.internal:8080 \
                 -e JOB_NAME=${env.JOB_NAME} \
                 -e BUILD_NUMBER=${env.BUILD_NUMBER} \
