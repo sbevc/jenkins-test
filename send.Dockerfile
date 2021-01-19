@@ -1,10 +1,12 @@
 FROM python:3.9.1
 
+RUN apt-get -y update
 ENV APP=/app
 
 ADD main.py $APP
 
+WORKDIR $APP
+
 RUN pip install python-jenkins
 
-WORKDIR $APP
 CMD python main.py
