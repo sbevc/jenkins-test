@@ -25,8 +25,8 @@ print(json.dumps(build_info, indent=2))
 
 
 print()
-print("ENV VARS")
-print(json.dumps(dict(os.environ), indent=2))
+print("JENKINS ENV VARS")
+print(json.dumps(server.get_build_env_vars(job_name, build_number)))
 
 print()
 print("READING TEST FILE")
