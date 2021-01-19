@@ -23,7 +23,7 @@ pipeline {
             sh """
             echo post-always stage
             docker build -t send-script -f send.Dockerfile .
-            docker run send-script --jenkins-url=${env.JENKINS_URL} --job-name=${env.JOB_NAME} --build-number=${env.BUILD_NUMBER}
+            docker run send-script
             """
         }
     }
