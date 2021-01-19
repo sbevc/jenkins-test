@@ -3,7 +3,7 @@ FROM python:3.9.1
 RUN apt-get -y update
 ENV APP=/app
 
-ADD main.py $APP
+ADD main.py $APP/
 
 WORKDIR $APP
 
