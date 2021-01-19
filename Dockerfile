@@ -9,4 +9,4 @@ WORKDIR $APP
 
 RUN pip install pipenv && pipenv install --deploy --system
 
-CMD ["python", "main.py"]
+CMD ["pytest" "--junit-xml=output.xml"]

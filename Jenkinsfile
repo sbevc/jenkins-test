@@ -11,7 +11,7 @@ pipeline {
 
         stage("test") {
             steps {
-                sh 'running tests in docker'
+                sh 'echo running tests in docker'
                 sh 'docker run jenkins-tests'
             }
         }
