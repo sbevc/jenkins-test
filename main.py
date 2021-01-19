@@ -33,5 +33,5 @@ print("READING TEST FILE")
 try:
     with open("output.xml", "r") as f:
         print(f.read())
-except FileExistsError as e:
+except FileNotFoundError as e:
     print(e)
