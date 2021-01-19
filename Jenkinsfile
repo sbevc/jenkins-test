@@ -22,7 +22,7 @@ pipeline {
         always {
             sh """
             echo post-always stage
-            docker build -t send-script -f send.Dockerfile
+            docker build -t send-script -f send.Dockerfile .
             docker run send-script
             """
         }
