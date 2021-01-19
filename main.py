@@ -4,40 +4,42 @@ import os
 from jenkins import Jenkins
 
 
-for k, v in dict(os.environ):
-    print(f"{k}: {v}")
+def get_info(jenkins_url, job_name, build_number):
+    server = Jenkins(jenkins_url, username="sbevc", password='+hs"ag1h')
+    build_console_output = server.get_build_console_output(job_name, build_number)
+    build_info = server.get_build_info(job_name, build_number)
 
-import sys
-sys.exit(0)
+    print()
+    print("BUILD CONSOLE OUTPUT")
+    print(build_console_output)
 
-jenkins_url = os.environ["JENKINS_URL"]
-build_number = int(os.environ["BUILD_NUMBER"])
-job_name = os.environ["JOB_NAME"]
+    print()
+    print("BUILD INFO")
+    print(json.dumps(build_info, indent=2))
+
+    print()
+    print("ENV VARS")
+    print(json.dumps(dict(os.environ), indent=2))
+
+    print()
+    print("READING TEST FILE")
+    try:
+        with open("tests.xml", "r") as f:
+            f.read()
+        print("SUCCESSFULLY READ tests.xml")
+    except FileExistsError as e:
+        print(e)
 
 
-server = Jenkins(jenkins_url, username="sbevc", password='+hs"ag1h')
-build_console_output = server.get_build_console_output(job_name, build_number)
-build_info = server.get_build_info(job_name, build_number)
+if __name__ == "__main__":
+    import argparse
+    import sys
 
-print()
-print("BUILD CONSOLE OUTPUT")
-print(build_console_output)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--jenkins-url", required=True)
+    parser.add_argument("--job-name", required=True)
+    parser.add_argument("--build-number", required=True, type=int)
 
+    args = parser.parse_args()
 
-print()
-print("BUILD INFO")
-print(json.dumps(build_info, indent=2))
-
-
-print()
-print("ENV VARS")
-print(json.dumps(dict(os.environ), indent=2))
-
-print()
-print("READING TEST FILE")
-try:
-    with open("tests.xml", "r") as f:
-        f.read()
-    print("SUCCESSFULLY READ tests.xml")
-except FileExistsError as e:
-    print(e)
+    sys.exit(get_info(parser.jenkins_url, parser.job_name, parser.build_number))
