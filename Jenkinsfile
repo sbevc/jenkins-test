@@ -25,7 +25,7 @@ pipeline {
             docker build -t send-script -f send.Dockerfile .
             echo $JENKINS_URL
             docker run \
-                -e JENKINS_URL=${env.JENKINS_URL} \
+                -e JENKINS_URL=http://host.docker.internal:8080 \
                 -e JOB_NAME=${env.JOB_NAME} \
                 -e BUILD_NUMBER=${env.BUILD_NUMBER} \
                 send-script
