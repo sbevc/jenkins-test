@@ -8,11 +8,10 @@ pipeline {
                 docker build -t jenkins-tests .
                 docker run \
                     --rm \
-                    -v ~/tests-output:/tests
-                    -e DOCKER_TESTS_VOLUME_PATH=/tests
+                    -v ~/tests-output:/tests \
+                    -e DOCKER_TESTS_VOLUME_PATH=/tests \
                     jenkins-tests
                 """
-                sh """ls ~/tests-output"""
             }
         }
 
@@ -21,6 +20,7 @@ pipeline {
     post {
         always {
             sh """
+                ls ~/tests-output
                 curl http://127.0.0.1:8000/deploys/api/jenkins-builds/ \
                     -F project_name=jenkins-test \
                     -F repo_url=https://github.com/sbevc/jenkins-test.git \
