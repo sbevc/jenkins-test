@@ -2,8 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_TESTS_VOLUME = "TestsVolume"
-        DOCKER_TESTS_VOLUME_PATH = "/tests"
+        TESTS_PATH = "/tests"
     }
 
     stages {
@@ -13,10 +12,11 @@ pipeline {
                 docker build -t jenkins-tests .
                 docker run \
                     --rm \
-                    -v ${DOCKER_TESTS_VOLUME}:${DOCKER_TESTS_VOLUME_PATH} \
-                    -e DOCKER_TESTS_VOLUME_PATH=${DOCKER_TESTS_VOLUME_PATH} \
+                    -v ${TESTS_PATH}:$TESTS_PATH \
+                    -e TESTS_PATH=${TESTS_PATH} \
                     jenkins-tests
                 """
+                sh 'ls ${TESTS_PATH}'
             }
         }
 
@@ -29,13 +29,13 @@ pipeline {
             docker build -t send-script -f send.Dockerfile .
             docker run \
                 --rm \
-                -v ${DOCKER_TESTS_VOLUME}:${DOCKER_TESTS_VOLUME_PATH} \
+                -v ${TESTS_PATH}:${TESTS_PATH} \
                 -e JENKINS_URL=http://host.docker.internal:8080 \
                 -e JOB_NAME=${env.JOB_NAME} \
                 -e BUILD_NUMBER=${env.BUILD_NUMBER} \
-                -e DOCKER_TESTS_VOLUME_PATH=${DOCKER_TESTS_VOLUME_PATH} \
+                -e DOCKER_TESTS_VOLUME_PATH=${TESTS_PATH} \
                 send-script
-            docker volume rm ${DOCKER_TESTS_VOLUME}
+            docker volume rm ${TESTS_PATH}
             """
         }
     }
