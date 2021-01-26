@@ -22,10 +22,10 @@ pipeline {
             sh """
                 curl http://127.0.0.1:8000/deploys/api/jenkins-builds/ \
                     -F project_name=jenkins-test \
-                    -F repo_url=https://github.com/sbevc/jenkins-test.git \
-                    -F jenkins_url=http://host.docker.internal:8080 \
-                    -F job_name=test/master \
-                    -F build_number=22 \
+                    -F repo_url=${GIT_URL} \
+                    -F jenkins_url=${JENKINS_URL} \
+                    -F job_name=${JOB_NAME} \
+                    -F build_number=${BUILD_NUMBER} \
                     -F tests_output=@/Users/sbevc/tests-output/pytest_output.xml 
             """
         }
