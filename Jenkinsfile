@@ -26,6 +26,7 @@ pipeline {
 
     post {
         always {
+            sh "ls ${DOCKER_TESTS_VOLUME_PATH}"
             sh """
             curl ${SAF_ENDPOINT} \
                 -F project_name=jenkins-test \
