@@ -1,2 +1,14 @@
-def test_foo():
+import pytest
+
+
+def test_pass():
     assert 1 + 1 == 2
+
+
+def test_fail():
+    assert 1 == 0
+
+
+@pytest.mark.skip
+def test_skip():
+    pass
