@@ -9,6 +9,7 @@ ipython = "*"
 jedi = "==0.17.2"
 parso = "==0.7.1"
 pytest = "*"
+junitparser = "*"
 
 [dev-packages]
 

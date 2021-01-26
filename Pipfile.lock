@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "33b8250ea07f7bea9439612a68d6b468fe4ba56b287e77d4d26135a86108a26e"
+            "sha256": "e59be42525beb4d6052bd931334f6942ebe80a79acc5037c2de3c7618a90c569"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -61,6 +61,13 @@
             ],
             "version": "==4.4.2"
         },
+        "future": {
+            "hashes": [
+                "sha256:b1bead90b70cf6ec3f0710ae53a525360fa360d306a86583adc6bf83a4db537d"
+            ],
+            "markers": "python_version >= '2.6' and python_version not in '3.0, 3.1, 3.2, 3.3'",
+            "version": "==0.18.2"
+        },
         "idna": {
             "hashes": [
                 "sha256:b307872f855b18632ce0c21c5e45be78c0ea7ae4c15c828c20788b26921eb3f6",
@@ -98,6 +105,14 @@
             ],
             "index": "pypi",
             "version": "==0.17.2"
+        },
+        "junitparser": {
+            "hashes": [
+                "sha256:653005a60785ca9899b7c08cc5959591c144a38bc5e5150a5477c95f3503660a",
+                "sha256:760b01e3e678eae2aa37bd9b4345774e1cd8ac49c95fbf790fbe602e0a6ce11d"
+            ],
+            "index": "pypi",
+            "version": "==2.0.0"
         },
         "multi-key-dict": {
             "hashes": [
@@ -157,11 +172,11 @@
         },
         "prompt-toolkit": {
             "hashes": [
-                "sha256:ac329c69bd8564cb491940511957312c7b8959bb5b3cf3582b406068a51d5bb7",
-                "sha256:b8b3d0bde65da350290c46a8f54f336b3cbf5464a4ac11239668d986852e79d5"
+                "sha256:0bdd2585e5afd00c5f91dd28eb2090ea67e94c385878921939bb4ccfa3904723",
+                "sha256:dc83e6368b0edd9ceabe17a055f2e22f6ed95b9aa39dbd59d0b4f3585bdfe9ed"
             ],
             "markers": "python_full_version >= '3.6.1'",
-            "version": "==3.0.10"
+            "version": "==3.0.11"
         },
         "ptyprocess": {
             "hashes": [
