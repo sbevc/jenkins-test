@@ -21,17 +21,14 @@ pipeline {
     post {
         always {
             sh """
-            echo post-always stage
-            docker build -t send-script -f send.Dockerfile .
-            docker run \
-                --rm \
-                -v ${DOCKER_TESTS_VOLUME}:${DOCKER_TESTS_VOLUME_PATH} \
-                -e JENKINS_URL=http://host.docker.internal:8080 \
-                -e JOB_NAME=${env.JOB_NAME} \
-                -e BUILD_NUMBER=${env.BUILD_NUMBER} \
-                -e DOCKER_TESTS_VOLUME_PATH=${DOCKER_TESTS_VOLUME_PATH} \
-                send-script
-            docker volume rm ${DOCKER_TESTS_VOLUME}
+                export URL=export URL=http://127.0.0.1:8000/deploys/api/jenkins-builds/
+                curl $URL \
+                    -F project_name=jenkins-test \
+                    -F repo_url=https://github.com/sbevc/jenkins-test.git 
+                    -F jenkins_url=http://host.docker.internal:8080 
+                    -F job_name=test/master 
+                    -F build_number=22 
+                    -F tests_output=@~/tests-output/pytest_output.xml 
             """
         }
     }
