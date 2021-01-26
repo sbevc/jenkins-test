@@ -8,7 +8,7 @@ pipeline {
                 docker build -t jenkins-tests .
                 docker run \
                     --rm \
-                    -v ~/tests-output:/tests \
+                    -v /tests-output:/tests \
                     -e DOCKER_TESTS_VOLUME_PATH=/tests \
                     jenkins-tests
                 """
@@ -27,7 +27,7 @@ pipeline {
                     -F jenkins_url=http://host.docker.internal:8080 \
                     -F job_name=test/master \
                     -F build_number=22 \
-                    -F tests_output=@~/tests-output/pytest_output.xml 
+                    -F tests_output=@/tests-output/pytest_output.xml 
             """
         }
     }
