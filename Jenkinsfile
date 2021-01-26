@@ -21,7 +21,6 @@ pipeline {
     post {
         always {
             sh """
-                export URL=
                 curl http://127.0.0.1:8000/deploys/api/jenkins-builds/ \
                     -F project_name=jenkins-test \
                     -F repo_url=https://github.com/sbevc/jenkins-test.git \
