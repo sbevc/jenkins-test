@@ -19,6 +19,8 @@ pipeline {
                     -e DOCKER_TESTS_VOLUME_PATH=${DOCKER_TESTS_VOLUME_PATH} \
                     jenkins-tests
                 """
+                sh """echo $$$$$$$$$$$$$$$$$$$"""
+                sh """ls ${DOCKER_TESTS_VOLUME_PATH}"""
             }
         }
 
