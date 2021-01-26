@@ -33,7 +33,7 @@ pipeline {
                 -F jenkins_url=http://host.docker.internal:8000 \
                 -F job_name=test/master \
                 -F build_number=22 \
-                --tests_output=@${DOCKER_TESTS_VOLUME_PATH}/pytest_output.xml \
+                -F tests_output=@${DOCKER_TESTS_VOLUME_PATH}/pytest_output.xml
             """
         }
     }
