@@ -20,7 +20,7 @@ pipeline {
     post {
         always {
             sh """
-                curl http://127.0.0.1:8000/deploys/api/jenkins-builds/ \
+                curl http://hpctsre02.ghdna.io/deploys/api/jenkins-builds/ \
                     -F project_name=jenkins-test \
                     -F repo_url=${GIT_URL} \
                     -F jenkins_url=http://host.docker.internal:8080 \
