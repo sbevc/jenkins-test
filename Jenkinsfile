@@ -14,7 +14,6 @@ pipeline {
                 """
             }
         }
-
     }
 
     post {
@@ -26,7 +25,9 @@ pipeline {
                     -F jenkins_url=http://host.docker.internal:8080 \
                     -F job_name=${JOB_NAME} \
                     -F build_number=${BUILD_NUMBER} \
-                    -F tests_output=@/Users/sbevc/tests-output/pytest_output.xml 
+                    -F tests_output=@/Users/sbevc/tests-output/pytest_output.xml \
+                    -F git_branch=${GIT_BRANCH} \
+                    -F docker_img=jenkins-tests::$(docker inspect -f {{.Id}} jenkins-tests)
             """
         }
     }
