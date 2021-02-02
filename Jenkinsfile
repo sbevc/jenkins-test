@@ -5,6 +5,9 @@ pipeline {
         stage("test") {
             steps {
                 sh """
+                    echo $(whoami)
+                """
+                sh """
                 docker build -t jenkins-tests .
                 docker run \
                     --rm \
