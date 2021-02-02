@@ -5,7 +5,7 @@ pipeline {
         stage("test") {
             steps {
                 sh """
-                    echo \"\$(whoami)\"
+                    echo \\"\$(whoami)\\"
                     exit 1
                 """
                 sh """
