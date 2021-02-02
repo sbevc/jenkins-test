@@ -26,7 +26,7 @@ pipeline {
                     -F jenkins_url=${JENKINS_URL} \
                     -F job_name=${JOB_NAME} \
                     -F build_number=${BUILD_NUMBER} \
-                    -F tests_output=@/Users/sbevc/tests-output/pytest-output.xml -F test_source=pytest
+                    -F tests_output=@/Users/sbevc/tests-output/pytest_output.xml -F test_source=pytest
             """
         }
     }
