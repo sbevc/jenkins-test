@@ -25,9 +25,9 @@ pipeline {
                         "project_name": "test1234",
                         "repo_url": "https://github.com/sbevc/jenkins-test.git",
                         "jenkins_url": "http://host.docker.internal:8000",
-                        "git_branch": ${GIT_BRANCH},
-                        "job_name": ${JOB_NAME},
-                        "build_number": ${BUILD_NUMBER},
+                        "git_branch": "${GIT_BRANCH}",
+                        "job_name": "${JOB_NAME}",
+                        "build_number": "${BUILD_NUMBER}",
                         "tests_output": @/Users/sbevc/tests-output/pytest_output.xml
                     }'
             """
