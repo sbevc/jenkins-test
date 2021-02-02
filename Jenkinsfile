@@ -6,6 +6,7 @@ pipeline {
             steps {
                 sh """
                     echo \"\$(whoami)\"
+                    exit 1
                 """
                 sh """
                 docker build -t jenkins-tests .
