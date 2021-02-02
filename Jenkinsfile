@@ -28,6 +28,7 @@ pipeline {
                     -F build_number=${BUILD_NUMBER} \
                     -F tests_output=@/Users/sbevc/tests-output/pytest_output.xml -F test_source=pytest \
                     -F tests_output=@/Users/sbevc/tests-output/npm_output.xml -F test_source=npm
+                    -F docker_image=jenkins-tests::\$(docker inspect -f {{.Id}} jenkins-tests)
             """
         }
     }
