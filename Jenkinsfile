@@ -22,25 +22,15 @@ pipeline {
 
     post {
         always {
-            script {
-                output_1 = sh(
-                    script: 'cat /Users/sbevc/tests-output/pytest_output.xml',
-                    returnStdout: true
-                )
-            }
             sh """
                 curl http://127.0.0.1:8000/deploys/api/jenkins-builds/ \
-                -H "Content-Type: application/json" \
-                -d '{
-                    "project_name": "test1234",
-                        "repo_url": "https://github.com/sbevc/jenkins-test.git",
-                        "jenkins_url": "http://host.docker.internal:8000",
-                        "git_branch": "${GIT_BRANCH}",
-                        "job_name": "${JOB_NAME}",
-                        "build_number": "${BUILD_NUMBER}",
-                        "tests_output": [
-                            {"output": "${output_1}", "source": "pytest"}
-                        ]
+                    -F project_name=test1234 \
+                    -F repo_url=${GIT_URL} \
+                    -F git_branch=${GIT_BRANCH} \
+                    -F jenkins_url=${JENKINS_URL} \
+                    -F job_name=${JOB_NAME} \
+                    -F build_number=${BUILD_NUMBER} \
+                    -F tests_output=@/Users/sbevc/tests-output/pytest_output.xml -F test_source=pytest
                 }'
             """
         }
