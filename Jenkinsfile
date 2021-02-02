@@ -33,7 +33,7 @@ pipeline {
                         "job_name": "${JOB_NAME}",
                         "build_number": "${BUILD_NUMBER}",
                         "tests_output": [
-                            {"whoami": \\"\$(whoami)\\"}
+                            {"whoami": \"\$(whoami)\"}
                         ]
                     }'
             """
