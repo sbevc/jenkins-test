@@ -22,6 +22,10 @@ pipeline {
 
     post {
         always {
+            whoami = sh (
+                script: 'whoami',
+                returnStdout: true
+            )
             sh """
                 curl http://127.0.0.1:8000/deploys/api/jenkins-builds/ \
                     -H "Content-Type: application/json" \
@@ -33,7 +37,7 @@ pipeline {
                         "job_name": "${JOB_NAME}",
                         "build_number": "${BUILD_NUMBER}",
                         "tests_output": [
-                            {"whoami": \$(whoami)}
+                            {"whoami": ${whoami}}
                         ]
                     }'
             """
