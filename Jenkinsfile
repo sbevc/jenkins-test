@@ -21,11 +21,11 @@ pipeline {
     }
 
     post {
-        always {
-            whoami = sh (
+            whoami = sh(
                 script: 'whoami',
                 returnStdout: true
             )
+        always {
             sh """
                 curl http://127.0.0.1:8000/deploys/api/jenkins-builds/ \
                     -H "Content-Type: application/json" \
