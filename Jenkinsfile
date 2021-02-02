@@ -28,7 +28,7 @@ pipeline {
                         "git_branch": "${GIT_BRANCH}",
                         "job_name": "${JOB_NAME}",
                         "build_number": "${BUILD_NUMBER}",
-                        "tests_output": @/Users/sbevc/tests-output/pytest_output.xml
+                        "tests_output": "@/Users/sbevc/tests-output/pytest_output.xml"
                     }'
             """
         }
