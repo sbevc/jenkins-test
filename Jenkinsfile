@@ -29,7 +29,7 @@ pipeline {
                         "job_name": "${JOB_NAME}",
                         "build_number": "${BUILD_NUMBER}",
                         "tests_output": [
-                            {"output": "\$(cat /Users/sbevc/tests-output/pytest_output.xml)"}
+                            {"output": "`cat /Users/sbevc/tests-output/pytest_output.xml`"}
                         ]
                     }'
             """
