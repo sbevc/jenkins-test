@@ -39,7 +39,7 @@ pipeline {
                         "job_name": "${JOB_NAME}",
                         "build_number": "${BUILD_NUMBER}",
                         "tests_output": [
-                            {"output": ${output_1}, "source": "pytest"}
+                            {"output": '${output_1}', "source": "pytest"}
                         ]
                 }'
             """
