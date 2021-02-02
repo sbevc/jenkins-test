@@ -5,17 +5,13 @@ pipeline {
             stage("test") {
                 steps {
                     sh """
-                        echo \\"\$(whoami)\\"
-                        exit 1
-                        """
-                        sh """
                         docker build -t jenkins-tests .
                         docker run \
-                        --rm \
-                        -v ~/tests-output:/tests \
-                        -e DOCKER_TESTS_VOLUME_PATH=/tests \
-                        jenkins-tests
-                        """
+                            --rm \
+                            -v ~/tests-output:/tests \
+                            -e DOCKER_TESTS_VOLUME_PATH=/tests \
+                            jenkins-tests
+                    """
                 }
             }
         }
