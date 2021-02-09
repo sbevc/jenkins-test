@@ -18,7 +18,7 @@ pipeline {
 
     post {
         always {
-            junit junit 'build/reports/**/*.xml'
+            junit 'build/reports/**/*.xml'
             sh """
                 curl http://127.0.0.1:8000/builds/api/jenkins-builds/ \
                     -F project_name=test1234 \
