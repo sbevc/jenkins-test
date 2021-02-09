@@ -8,7 +8,8 @@ pipeline {
                         docker build -t jenkins-tests .
                         docker run \
                             --rm \
-                            jenkins-tests pytest --junit-xml=reports/pytest.xml
+                            -v .:/test_results \
+                            jenkins-tests pytest --junit-xml=test_results/foobar.xml
                     """
                 }
             }
@@ -16,10 +17,7 @@ pipeline {
 
     post {
         always {
-            sh "echo pwd: && pwd"
-            sh "echo ls: && ls"
-            sh "ls"
-            junit 'build/reports/**/*.xml'
+            junit 'foobar.xml'
             sh """
                 curl http://127.0.0.1:8000/builds/api/jenkins-builds/ \
                     -F project_name=test1234 \
