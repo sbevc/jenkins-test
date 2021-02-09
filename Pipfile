@@ -11,6 +11,7 @@ parso = "==0.7.1"
 pytest = "*"
 junitparser = "*"
 django-tables2 = "*"
+allure-pytest = "*"
 
 [dev-packages]
 
