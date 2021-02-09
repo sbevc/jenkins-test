@@ -8,7 +8,7 @@ pipeline {
                         docker build -t jenkins-tests .
                         docker run \
                             --rm \
-                            -v .:/test_results \
+                            -v $(pwd):/test_results \
                             jenkins-tests pytest --junit-xml=test_results/foobar.xml
                     """
                 }
