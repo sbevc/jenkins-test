@@ -9,4 +9,4 @@ WORKDIR $APP
 
 RUN pip install pipenv && pipenv install --deploy --system
 
-CMD pytest --junit-xml=$DOCKER_TESTS_VOLUME_PATH/pytest_output.xml
+#CMD pytest --junit-xml=$DOCKER_TESTS_VOLUME_PATH/pytest_output.xml
