@@ -16,6 +16,9 @@ pipeline {
 
     post {
         always {
+            sh "echo pwd: && pwd"
+            sh "echo ls: && ls"
+            sh "ls"
             junit 'build/reports/**/*.xml'
             sh """
                 curl http://127.0.0.1:8000/builds/api/jenkins-builds/ \
