@@ -8,8 +8,9 @@ pipeline {
                         docker build -t jenkins-tests .
                         docker run \
                             --rm \
-                            -v \$(pwd)/output:/test_results \
-                            jenkins-tests pytest --junit-xml=test_results/foobar.xml
+                            -v ~/tests-output:/tests \
+                            -e DOCKER_TESTS_VOLUME_PATH=/tests \
+                            jenkins-tests
                     """
                 }
             }
@@ -17,9 +18,8 @@ pipeline {
 
     post {
         always {
-            junit 'output/*.xml'
             sh """
-                curl http://127.0.0.1:8000/builds/api/jenkins-builds/ \
+                curl http://127.0.0.1:8000/deploys/api/jenkins-builds/ \
                     -F project_name=test1234 \
                     -F repo_url=${GIT_URL} \
                     -F git_branch=${GIT_BRANCH} \
