@@ -20,7 +20,7 @@ pipeline {
         always {
             sh """
                 curl http://127.0.0.1:8000/builds/api/jenkins-builds/ \
-                    -F project_name=test1234 \
+                    -F project_name=foobar \
                     -F repo_url=${GIT_URL} \
                     -F git_branch=${GIT_BRANCH} \
                     -F jenkins_url=${JENKINS_URL} \
