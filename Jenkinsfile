@@ -19,7 +19,7 @@ pipeline {
     post {
         always {
             sh """
-                curl http://127.0.0.1:8000/deploys/api/jenkins-builds/ \
+                curl http://127.0.0.1:8000/builds/api/jenkins-builds/ \
                     -F project_name=test1234 \
                     -F repo_url=${GIT_URL} \
                     -F git_branch=${GIT_BRANCH} \
