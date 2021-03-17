@@ -1,14 +1,10 @@
 pipeline {
     agent any
 
-        environment {
-            FOO = "foo"
-        }
-
         stages {
-            stage("change vars") {
+            stage("set env var") {
                 steps {
-                    sh "FOO='updated foo'"
+                    env.FOO = "foo"
                 }
             }
 
