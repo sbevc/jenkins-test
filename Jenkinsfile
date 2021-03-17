@@ -7,10 +7,14 @@ pipeline {
 
         stages {
             stage("change vars") {
-                sh "FOO='updated foo'"
+                steps {
+                    sh "FOO='updated foo'"
+                }
             }
+
             stage("test") {
                 steps {
+                    sh "echo $FOO"
                     sh """
                         docker build -t jenkins-tests .
                         docker run \
