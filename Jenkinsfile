@@ -1,22 +1,32 @@
 pipeline {
     agent any
 
+        environment {
+            OUTER_FOO = "outer foo"
+        }
+
         stages {
-            stage("set env var") {
+            stage("1") {
                 steps {
-                    sh "echo SETTING FOO env"
                     script {
                         env.FOO = "foo"
                     }
                 }
             }
 
+            stage("change variables") {
+                steps {
+                    script {
+                        env.FOO = "new foo"
+                        env.OUTER_FOO = "new outer foo"
+                    }
+                    sh "echo $FOO"
+                    sh "echo $OUTER_FOO"
+                }
+            }
+
             stage("test") {
                 steps {
-                    sh "echo looking up FOO"
-                    sh "echo $FOO"
-                    sh "echo looking up DOES_NOT_EXIST"
-                    sh "echo $DOES_NOT_EXIST"
                     sh """
                         docker build -t jenkins-tests .
                         docker run \
