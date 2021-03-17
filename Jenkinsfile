@@ -13,7 +13,10 @@ pipeline {
 
             stage("test") {
                 steps {
+                    sh "looking up FOO"
                     sh "echo $FOO"
+                    sh "looking up DOES_NOT_EXIST"
+                    sh "echo $DOES_NOT_EXIST"
                     sh """
                         docker build -t jenkins-tests .
                         docker run \
