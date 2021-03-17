@@ -4,6 +4,7 @@ pipeline {
         stages {
             stage("set env var") {
                 steps {
+                    sh "echo SETTING FOO env"
                     script {
                         env.FOO = "foo"
                     }
