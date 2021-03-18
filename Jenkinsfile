@@ -6,7 +6,10 @@ pipeline {
                 steps {
                     script {
                         if (fileExists('/Users/sbevc/foo')) {
-                            cmd = "echo file exists!!!"
+                            cmd = """
+                                echo file exists && \
+                                echo this is line 2!!!
+                                """
                         } else {
                             cmd = "echo file does not exist!"
                         }
