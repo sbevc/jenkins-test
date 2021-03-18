@@ -48,8 +48,9 @@ pipeline {
                 script {
                     if (fileGlobExists("~/fo*")) {
                         echo "~/fo* exists!"
-                    } else {
-                        echo "did not find '~/fo*'"
+                    }
+                    if (!fileGlobExists("~/nonExistentFile*")) {
+                        echo "did not find ~/nonExistentFile*"
                     }
                 }
 
