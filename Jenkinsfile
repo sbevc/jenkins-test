@@ -10,7 +10,7 @@ def fileGlobExists(String fileGlob) {
         else
             exit 1
         fi
-    """
+    """)
     return exitCode == 0
 }
 
