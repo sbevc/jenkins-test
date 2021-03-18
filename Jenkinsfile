@@ -47,16 +47,16 @@ pipeline {
             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                 script {
                     env.FILE = "~/fo*"
-                    sh 'echo ${FILE}'
+                    env.NON_EXISTENT_FILE = "~/zdlkfjalsdjf*"
                     if (fileGlobExists("${FILE}")) {
-                        echo "~/fo* exists!"
+                        echo "${FILE} found!"
                     } else {
-                        echo "~/fo* does NOT exist"
+                        echo "${FILE} not found"
                     }
-                    if (fileGlobExists("~/nonExistentFile*")) {
-                        echo "~/nonExistentFile* exists!"
+                    if (fileGlobExists("${NON_EXISTENT_FILE}")) {
+                        echo "${NON_EXISTENT_FILE} found!"
                     } else {
-                        echo "~/nonExistentFile does NOT exist"
+                        echo "${NON_EXISTENT_FILE} not found!"
                     }
                 }
 
