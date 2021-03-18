@@ -45,8 +45,9 @@ pipeline {
             //"""
 
             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                FILE = "~fo*"
                 script {
-                    if (fileGlobExists("~/fo*")) {
+                    if (fileGlobExists(FILE)) {
                         echo "~/fo* exists!"
                     } else {
                         echo "~/fo* does NOT exist"
