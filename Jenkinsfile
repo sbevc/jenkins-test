@@ -4,8 +4,10 @@
  * @param fileGlob filepath to check for. Globs are supported, "~" is NOT supported
  */
 def fileGlobExists(String fileGlob) {
-    def files = findFiles glob: fileGlob
-    return files.length > 0
+    ret = sh(returnStdout: true, script: """
+        python -c "import glob, os; print(glob.glob(os.path.expanduser($fileGlob)))"
+    """)
+    return ret =! "[]"
     //expanded = sh(script: "echo $fileGlob", returnStdout: true)
     //ret = expanded != fileGlob;
     //println("fileGlob: $fileGlob ${fileGlob.getClass()}, expanded: $expanded ${expanded.getClass()}, ret: $ret")
