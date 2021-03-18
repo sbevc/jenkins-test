@@ -1,28 +1,19 @@
 pipeline {
     agent any
 
-        environment {
-            OUTER_FOO = "outer foo"
-        }
-
         stages {
-            stage("1") {
+            stage("test file exists") {
                 steps {
                     script {
-                        env.FOO = "foo"
+                        if (fileExists('~/foo')) {
+                            sh "echo ~/foo exists!!!"
+                        } else {
+                            sh "echo ~/foo does not exist!"
+                        }
+                        
                     }
                 }
-            }
 
-            stage("change variables") {
-                steps {
-                    script {
-                        env.FOO = "new foo"
-                        env.OUTER_FOO = "new outer foo"
-                    }
-                    sh "echo $FOO"
-                    sh "echo $OUTER_FOO"
-                }
             }
 
             stage("test") {
