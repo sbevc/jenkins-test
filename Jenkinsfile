@@ -4,12 +4,15 @@ pipeline {
         stages {
             stage("test file exists") {
                 steps {
-                    if (fileExists('/Users/sbevc/foo')) {
-                        sh "echo ~/foo exists!!!"
-                    } else {
-                        sh "echo ~/foo does not exist!"
+                    script {
+                        if (fileExists('/Users/sbevc/foo')) {
+                            sh "echo ~/foo exists!!!"
+                        } else {
+                            sh "echo ~/foo does not exist!"
+                        }
                     }
                 }
+
             }
 
             stage("test") {
