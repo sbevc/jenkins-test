@@ -5,9 +5,8 @@
  */
 def fileGlobExists(String fileGlob) {
     sh "file $fileGlob"
-    def expanded = sh(script: "echo $fileGlob", returnStdout: true)
-    println("expanded: $expanded")
-    return expanded != fileGlob
+    def exists = sh(returnStatus: true, script: "file $fileGlob")
+    return exists == 0
 }
 
 
