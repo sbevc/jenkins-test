@@ -5,7 +5,9 @@
  */
 def fileGlobExists(String fileGlob) {
     println("fileGlob is $fileGlob")
-    def exitCode = sh script: 'test -f "$fileGlob"', returnStatus: true
+        exitCode = sh(returnStatus: true, script: """
+            test -f "$fileGlob"
+        """)
     return exitCode == 0
 }
 
