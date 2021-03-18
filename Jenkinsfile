@@ -33,13 +33,13 @@ pipeline {
                 //"""
 
             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                cmd = "echo foo";
                 steps {
+                    cmd = "echo foo";
                     if (fileExists("/Users/sbevc/foo")) {
                         cmd += " && echo file exists!!!"
                     }
+                    sh "$cmd"
                 }
-                sh "$cmd"
             }
         }
     }
