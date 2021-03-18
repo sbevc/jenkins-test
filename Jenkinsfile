@@ -48,7 +48,7 @@ pipeline {
                 script {
                     env.FILE = "~/fo*"
                     sh 'echo ${FILE}'
-                    if (fileGlobExists("${FILE}")) {
+                    if (fileGlobExists('"${FILE}"')) {
                         echo "~/fo* exists!"
                     } else {
                         echo "~/fo* does NOT exist"
