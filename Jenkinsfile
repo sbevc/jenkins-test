@@ -8,7 +8,7 @@ def fileGlobExists(String fileGlob) {
         python -c 'import glob, os; print(glob.glob(os.path.expanduser("$fileGlob")))'
     """)
     notFound = "[]"
-    println("ret", ret, "notFound", notFound)
+    println("ret: $ret, notFound: $notFound, ${ret != notFound}")
     return ret != notFound
     //expanded = sh(script: "echo $fileGlob", returnStdout: true)
     //ret = expanded != fileGlob;
