@@ -1,12 +1,13 @@
-def buildSucceded(String expectedBuildOutputFile) {
-    def exitCode = sh script: 'test -f $expectedBuildOutputFile', returnStatus: true
+/**
+ * Check for files existence supporting unix globs 
+ *
+ * @param fileGlob filepath to check for, relative or absulte, supporting globs.
+ */
+def fileGlobExists(String fileGlob) {
+    def exitCode = sh script: 'test -f $fileGlob', returnStatus: true
     return exitCode == 0
 }
 
-def fileExists(String fileName) {
-    def exitCode = sh script: 'test -f $fileName', returnStatus: true
-    return exitCode == 0
-}
 
 pipeline {
     agent any
@@ -45,11 +46,11 @@ pipeline {
 
             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                 script {
-                    cmd = "echo foo";
-                    if (fileExists("~/fo*")) {
-                        cmd += " && echo file exists!!!"
+                    if (fileGlobExists("~/fo*")) {
+                        echo "~/fo* exists!"
+                    } else {
+                        echo "did not find '~/fo*'"
                     }
-                    sh "$cmd"
                 }
 
             }
