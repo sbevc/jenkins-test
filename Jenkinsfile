@@ -5,7 +5,7 @@
  */
 def fileGlobExists(String fileGlob) {
     ret = sh(returnStdout: true, script: """
-        python -c "import glob, os; print(glob.glob(os.path.expanduser($fileGlob)))"
+        python -c "import glob, os; print(glob.glob(os.path.expanduser('$fileGlob')))"
     """)
     return ret =! "[]"
     //expanded = sh(script: "echo $fileGlob", returnStdout: true)
