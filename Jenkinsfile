@@ -1,5 +1,5 @@
 def buildSucceded(String expectedBuildOutputFile) {
-    def exitCode = sh script: 'find -name "$expectedBuildOutputFile" -maxdepth 0 | egrep .', returnStatus: true
+    def exitCode = sh script: 'test -f $expectedBuildOutputFile', returnStatus: true
     return exitCode == 0
 }
 
