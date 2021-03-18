@@ -1,3 +1,8 @@
+def buildSucceded(String expectedBuildOutputFile) {
+    def exitCode = sh script: 'find -name "$expectedBuildOutputFile" -maxdepth 0 | egrep .', returnStatus: true
+    return exitCode == 0
+}
+
 pipeline {
     agent any
 
@@ -36,7 +41,7 @@ pipeline {
             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                 script {
                     cmd = "echo foo";
-                    if (fileExists("/Users/sbevc/foo")) {
+                    if (buildSucceded("~/fo*")) {
                         cmd += " && echo file exists!!!"
                     }
                     sh "$cmd"
