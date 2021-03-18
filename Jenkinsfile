@@ -4,7 +4,7 @@
  * @param fileGlob filepath to check for, relative or absulte, supporting globs.
  */
 def fileGlobExists(String fileGlob) {
-    def exists = sh(returnStatus: true, script: "file $fileGlob")
+    def exists = sh(returnStatus: true, script: "test -f $fileGlob")
     return exists == 0
 }
 
