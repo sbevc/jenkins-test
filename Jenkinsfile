@@ -10,6 +10,7 @@ pipeline {
                         } else {
                             sh "echo ~/foo does not exist!"
                         }
+                        sh "exit 1"
                     }
                 }
 
