@@ -4,16 +4,16 @@
  * @param fileGlob filepath to check for. Globs are supported, "~" is NOT supported
  */
 def fileGlobExists(String fileGlob) {
-    ret = sh(returnStdout: true, script: """
-        python -c 'import glob, os; print(glob.glob(os.path.expanduser("$fileGlob")))'
-    """)
-    notFound = "[]\n"
-    println("ret: $ret, notFound: $notFound, ${ret != notFound}")
-    return ret != notFound
-    //expanded = sh(script: "echo $fileGlob", returnStdout: true)
-    //ret = expanded != fileGlob;
-    //println("fileGlob: $fileGlob ${fileGlob.getClass()}, expanded: $expanded ${expanded.getClass()}, ret: $ret")
-    //return ret
+    //ret = sh(returnStdout: true, script: """
+        //python -c 'import glob, os; print(glob.glob(os.path.expanduser("$fileGlob")))'
+    //""")
+    //notFound = "[]\n"
+    //println("ret: $ret, notFound: $notFound, ${ret != notFound}")
+    //return ret != notFound
+    expanded = sh(script: "echo $fileGlob", returnStdout: true)
+    ret = expanded != fileGlob + "\n";
+    println("fileGlob: $fileGlob ${fileGlob.getClass()}, expanded: $expanded ${expanded.getClass()}, ret: $ret")
+    return ret
 }
 
 
