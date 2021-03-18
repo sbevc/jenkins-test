@@ -1,11 +1,12 @@
 /**
  * Check for files existence supporting unix globs 
  *
- * @param fileGlob filepath to check for, relative or absulte, supporting globs.
+ * @param fileGlob filepath to check for. Globs are supported, "~" is NOT supported
  */
 def fileGlobExists(String fileGlob) {
-    def exists = sh(returnStatus: true, script: "test -f $fileGlob")
-    return exists == 0
+    def expanded = sh(script: "echo $fileGlob", returnStdout: true)
+    println("expanded: $expanded")
+    return expanded != fileGlob
 }
 
 
@@ -46,8 +47,8 @@ pipeline {
 
             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                 script {
-                    env.FILE = "~/fo*"
-                    env.NON_EXISTENT_FILE = "~/zdlkfjalsdjf*"
+                    env.FILE = "/Users/sbevc/fo*"
+                    env.NON_EXISTENT_FILE = "/Users/sbevc/zdlkfjalsdjf*"
                     if (fileGlobExists("${FILE}")) {
                         echo "${FILE} found!"
                     } else {
