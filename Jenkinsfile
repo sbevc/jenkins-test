@@ -51,7 +51,7 @@ pipeline {
                     sh "echo ${FOO}"
                     //sh 'echo ${env.FOO}'  // does not work!!
                     env.BAR = "bar"
-                    ah 'echo $BAR'
+                    sh 'echo $BAR'
                     sh 'echo ${env.BAR}'
                     sh "echo ${BAR}"
                     sh 'echo ${env.BAR}'
