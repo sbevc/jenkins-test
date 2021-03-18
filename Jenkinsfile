@@ -4,9 +4,8 @@
  * @param fileGlob filepath to check for. Globs are supported, "~" is NOT supported
  */
 def fileGlobExists(String fileGlob) {
-    def expanded = sh(script: "echo $fileGlob", returnStdout: true)
-    //def ret = expanded != fileGlob;
-    def ret = expanded.equals(fileGlob)
+    expanded = sh(script: "echo $fileGlob", returnStdout: true)
+    ret = expanded != fileGlob;
     println("fileGlob: $fileGlob ${fileGlob.getClass()}, expanded: $expanded ${expanded.getClass()}, ret: $ret")
     return ret
 }
