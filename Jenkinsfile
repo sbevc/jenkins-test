@@ -3,6 +3,11 @@ def buildSucceded(String expectedBuildOutputFile) {
     return exitCode == 0
 }
 
+def fileExists(String fileName) {
+    def exitCode = sh script: 'test -f $fileName', returnStatus: true
+    return exitCode == 0
+}
+
 pipeline {
     agent any
 
@@ -41,7 +46,7 @@ pipeline {
             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                 script {
                     cmd = "echo foo";
-                    if (buildSucceded("~/fo*")) {
+                    if (fileExists("~/fo*")) {
                         cmd += " && echo file exists!!!"
                     }
                     sh "$cmd"
