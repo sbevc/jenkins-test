@@ -46,17 +46,8 @@ pipeline {
 
             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                 script {
-                    FOO = "foo"
-                    sh 'echo $FOO'
-                    sh "echo ${FOO}"
-                    //sh 'echo ${env.FOO}'  // does not work!!
-                    env.BAR = "bar"
-                    sh 'echo $BAR'
-                    //sh 'echo ${env.BAR}'  // does not work!!
-                    sh "echo ${BAR}"
-                    sh 'echo $env.BAR'
                     env.FILE = "~fo*"
-                    if (fileGlobExists("${env.FILE}")) {
+                    if (fileGlobExists("${FILE}")) {
                         echo "~/fo* exists!"
                     } else {
                         echo "~/fo* does NOT exist"
