@@ -52,9 +52,9 @@ pipeline {
                     //sh 'echo ${env.FOO}'  // does not work!!
                     env.BAR = "bar"
                     sh 'echo $BAR'
-                    sh 'echo ${env.BAR}'
+                    //sh 'echo ${env.BAR}'  // does not work!!
                     sh "echo ${BAR}"
-                    sh 'echo ${env.BAR}'
+                    sh 'echo $env.BAR'
                     env.FILE = "~fo*"
                     if (fileGlobExists("${env.FILE}")) {
                         echo "~/fo* exists!"
