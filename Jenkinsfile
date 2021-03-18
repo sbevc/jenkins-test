@@ -49,6 +49,7 @@ pipeline {
                 script {
                     env.FILE = "/Users/sbevc/fo*"
                     env.NON_EXISTENT_FILE = "/Users/sbevc/zdlkfjalsdjf*"
+                    env.RELATIVE = "./Dockerfile"
                     if (fileGlobExists("${FILE}")) {
                         echo "${FILE} found!"
                     } else {
@@ -58,6 +59,11 @@ pipeline {
                         echo "${NON_EXISTENT_FILE} found!"
                     } else {
                         echo "${NON_EXISTENT_FILE} not found!"
+                    }
+                    if (fileGlobExists("${RELATIVE}")) {
+                        echo "${RELATIVE} found!"
+                    } else {
+                        echo "${RELATIVE} not found!"
                     }
                 }
 
