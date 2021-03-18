@@ -1,7 +1,7 @@
 /**
  * Check for files existence supporting unix globs 
  *
- * @param fileGlob filepath to check for. Globs are supported, "~" is NOT supported
+ * @param fileGlob filepath to check for, accepting "~", relative and absolute paths.
  */
 def fileGlobExists(String fileGlob) {
     ret = sh(returnStdout: true, script: """
@@ -50,24 +50,34 @@ pipeline {
 
             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                 script {
-                    env.FILE = "/Users/sbevc/fo*"
-                    env.NON_EXISTENT_FILE = "/Users/sbevc/zdlkfjalsdjf*"
-                    env.RELATIVE = "./Dockerfile"
-                    if (fileGlobExists("${FILE}")) {
-                        echo "${FILE} found!"
-                    } else {
-                        echo "${FILE} not found"
+                    def files = [
+                        "/Users/sbevc/fo*",
+                        "./Dockerf*",
+                        "~/fo*",
+                        "~/nonexitent*"
+                    ]
+                    for (file in files) {
+                        if (fileGlobExists(file)) {
+                            println("$file found")
+                        } else {
+                            println("$file not found")
+                        }
                     }
-                    if (fileGlobExists("${NON_EXISTENT_FILE}")) {
-                        echo "${NON_EXISTENT_FILE} found!"
-                    } else {
-                        echo "${NON_EXISTENT_FILE} not found!"
-                    }
-                    if (fileGlobExists("${RELATIVE}")) {
-                        echo "${RELATIVE} found!"
-                    } else {
-                        echo "${RELATIVE} not found!"
-                    }
+                    //if (fileGlobExists("${FILE}")) {
+                        //echo "${FILE} found!"
+                    //} else {
+                        //echo "${FILE} not found"
+                    //}
+                    //if (fileGlobExists("${NON_EXISTENT_FILE}")) {
+                        //echo "${NON_EXISTENT_FILE} found!"
+                    //} else {
+                        //echo "${NON_EXISTENT_FILE} not found!"
+                    //}
+                    //if (fileGlobExists("${RELATIVE}")) {
+                        //echo "${RELATIVE} found!"
+                    //} else {
+                        //echo "${RELATIVE} not found!"
+                    //}
                 }
 
             }
