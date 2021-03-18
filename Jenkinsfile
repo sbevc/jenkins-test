@@ -4,7 +4,13 @@
  * @param fileGlob filepath to check for, relative or absulte, supporting globs.
  */
 def fileGlobExists(String fileGlob) {
-    exitCode = sh(returnStatus: true, script: "echo $fileGlob")
+    exitCode = sh(returnStatus: true, script: """
+        if [ "$(echo $fileGlob)" != $fileGlob ]; then
+            exit 0
+        else
+            exit 1
+        fi
+    """
     return exitCode == 0
 }
 
