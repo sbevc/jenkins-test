@@ -46,7 +46,7 @@ pipeline {
 
             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                 script {
-                    FILE = "~fo*"
+                    env.FILE = "~fo*"
                     if (fileGlobExists("${FILE}")) {
                         echo "~/fo* exists!"
                     } else {
