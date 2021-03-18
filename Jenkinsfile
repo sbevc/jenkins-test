@@ -5,7 +5,8 @@
  */
 def fileGlobExists(String fileGlob) {
     exitCode = sh(returnStatus: true, script: """
-        if [ \$(echo $fileGlob) != $fileGlob ]; then
+        expanded=\$(echo $fileGlob)
+        if [ $expanded != $fileGlob ]; then
             exit 0
         else
             exit 1
