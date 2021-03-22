@@ -20,6 +20,7 @@ pipeline {
             stage("foo") {
                 steps {
                     script {
+                        println("Result is: ${currentBuild.result}")
                         try {
                             sh "exit 1"
                             println("NO ERROR")
