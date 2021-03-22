@@ -41,6 +41,9 @@ pipeline {
 
     post {
         always {
+            script {
+                println("Result is: ${currentBuild.result}")
+            }
             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                 script {
                     def files = [
